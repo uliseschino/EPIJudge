@@ -7,7 +7,12 @@
 using std::vector;
 
 void EvenOdd(vector<int>* A_ptr) {
-  // TODO - you fill in here.
+  vector<int> &A = *A_ptr;
+  for(int i=0,j=0; j<A.size(); j++) {
+    if(A[j]%2 == 0) {
+      std::swap(A[i++], A[j]);
+    }
+  }
   return;
 }
 void EvenOddWrapper(TimedExecutor& executor, vector<int> A) {
