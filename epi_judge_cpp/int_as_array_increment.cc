@@ -3,32 +3,16 @@
 #include "test_framework/generic_test.h"
 using std::vector;
 vector<int> PlusOne(vector<int> A) {
-  int n = A.size();
-
-  vector<int> B;
-  B.reserve(n);
-
-  for(int i=n-1; i >= 0; i--) {
-    B.push_back(A[i]);
+  ++A.back();
+  for(int i=A.size()-1; i > 0 && A[i] == 10; i--) {
+    A[i] = 0;
+    A[i-1]++;
   }
-  int carry = 1;
-  for(int i=0; i < n; i++) {
-    int temp = B[i] + carry;
-    B[i] = temp % 10;
-    carry = temp / 10;
+  if(A[0] == 10) {
+    A[0] = 1;
+    A.push_back(0);
   }
-  if(carry > 0) {
-    B.push_back(carry);
-  }
-
-  vector<int> result;
-  result.reserve(n);
-
-  for(int i=B.size() -1; i >= 0; i--) {
-    result.push_back(B[i]);
-  }
-
-  return result;
+  return A;
 }
 
 int main(int argc, char* argv[]) {
