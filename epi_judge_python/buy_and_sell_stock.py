@@ -1,11 +1,17 @@
 from typing import List
+import sys
 
 from test_framework import generic_test
 
 
 def buy_and_sell_stock_once(prices: List[float]) -> float:
-    # TODO - you fill in here.
-    return 0.0
+    max_gain = 0
+    min_so_far = sys.maxsize
+    for price in prices:
+        gain = price - min_so_far
+        max_gain = max(max_gain, gain)
+        min_so_far = min(min_so_far, price)
+    return max_gain
 
 
 if __name__ == '__main__':
