@@ -5,9 +5,8 @@ using std::vector;
 double BuyAndSellStockOnce(const vector<double>& prices) {
   double max_gain=0, min_so_far = std::numeric_limits<double>::max();
   for(double price: prices) {
-    double gain = price - min_so_far;
-    max_gain = std::max(max_gain, gain);
     min_so_far = std::min(min_so_far, price);
+    max_gain = std::max(max_gain, price - min_so_far);
   }
   return max_gain;
 }
